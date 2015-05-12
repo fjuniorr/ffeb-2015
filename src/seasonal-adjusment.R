@@ -1,32 +1,23 @@
 library("reshape2")
 library("dplyr")
-source("./src/read-data.R")
+library("forecast")
 
-rcl_estados$ln_rcl <- log(rcl_estados[, "rcl"])
+#rcl_estados$ln_rcl <- log(rcl_estados[, "rcl"])
 
-rcl_estados$diff_ln_rcl <- c(NA, diff(rcl_estados[, "ln_rcl"]))
-
-group_by(rcl_estados, estado) %>% 
-    do(stl(ts(.$rcl, start = c(2003, 1), frequency = 12), s.window = "periodic", na.action = na.contiguous))
+#rcl_estados$diff_ln_rcl <- c(NA, diff(rcl_estados[, "ln_rcl"]))
                                     
-stl(ts(rcl_estados[rcl_estados$estado == "mg", "rcl"], start = c(2003, 1), frequency = 12)
-    , s.window = "periodic")
-
-
 data <- dcast(rcl_estados, mes ~ estado, value.var = "rcl")
 
 rcl <- ts(data[, -1], start = c(2003, 1), frequency = 12)
 
-seasonaly_adjusted <- ts(sapply(seq_len(ncol(rcl)), 
-       function(x) stl(rcl[, x], s.window = "periodic")$time.series[, "trend"]),
-       start = c(2003, 1), frequency = 12)
-
+seasonaly_adjusted <- sapply(seq_len(ncol(rcl)), function(x) stl(rcl[, x], s.window = "periodic"))
+                
 colnames(seasonaly_adjusted) <- colnames(rcl)
 
-plot(seasonaly_adjusted[, c("mg", "sp", "rj")])
+seasonaly_adjusted[, "sp"]
 
            
-rm(data)
+rm(data, rcl)
 
 # 
 # library(dplyr)
