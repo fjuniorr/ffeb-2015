@@ -14,7 +14,10 @@ seasonaly_adjusted <- sapply(seq_len(ncol(rcl)), function(x) stl(rcl[, x], s.win
                 
 colnames(seasonaly_adjusted) <- colnames(rcl)
 
-seasonaly_adjusted[, "sp"]
+
+random_walk_forecasts <- sapply(seq_len(ncol(rcl)), function(x) rwf(rcl[, x], h = 12, drift = TRUE)$mean)
+    
+colnames(random_walk_forecasts) <- colnames(rcl)    
 
            
 rm(data, rcl)
