@@ -1,31 +1,36 @@
 library("readxl")
 
 path <- "./data-raw/RCL_CAMBIO_IPV_IBC_IGPDI_BRASIL Patricia_Luciano.xlsx"
+states <- excel_sheets(path)
 
-raw_data <- lapply(excel_sheets(path), 
+raw_data <- lapply(states, 
                    FUN = read_excel, 
                    path = path, 
                    col_names = FALSE, 
                    skip = 1) # read all excel sheets and stores it in a list
 
-names(raw_data) <- tolower(excel_sheets(path))
 
 clean <- function(x) {
-    x <- x[37:180, 1:2]
-    names(x) <- c("mes", "rcl")
+    x <- x[37:180, 2]
+    names(x) <- c("rcl")
+    x <- ts(x, start = c(2003, 1), end = c(2014, 12), frequency = 12)
     return(x)
-} # function to clean each position in the list
+} # function to clean each position in the list and create a ts object
 
-clean_data <- lapply(raw_data, clean)
 
-rcl_estados <- do.call("rbind", clean_data) # merging the list into a single data frame
+rcl <- lapply(raw_data, clean)
 
-rcl_estados <- cbind(estado = substr(row.names(rcl_estados), start = 1, stop = 2), rcl_estados) # creating a column with the states identification
+names(rcl) <- states
 
-row.names(rcl_estados) <- NULL
+rcl <- rcl[c("MG", "SP", "RJ", "RS")]
 
-missing <- rcl_estados[!complete.cases(rcl_estados), ] # selecting the missing cases for information purposes
 
-rcl_estados <- rcl_estados[!rcl_estados$estado %in% unique(missing$estado), ] # working initially only with complete cases
+#===========================================
+# checking for missing values
 
-rm(path, raw_data, clean, clean_data)
+missing <- do.call("cbind", rcl)
+
+#===========================================
+# cleaning the enviroment
+
+rm(path, raw_data, clean)
