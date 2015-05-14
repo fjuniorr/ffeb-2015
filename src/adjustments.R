@@ -1,20 +1,41 @@
 
 
-adjustments <- function(x) {
+seasonal_adjustment <- function(x, ln = TRUE, dif = TRUE) {
     
-    series <- diff(log(x), lag = 1)
+    if(ln) x <- log(x)
     
-    seasonal_adjustment <- decompose(series, type = "additive")
+    if(dif) x <- diff(x, lag = 1)
     
-    figure <- ts(seasonal_adjustment$figure, 
-                 start = start(series), 
-                 end = end(series), 
-                 frequency = frequency(series))
+    decomposition <- decompose(x, type = "additive")
     
-    series <- series - figure
+    figure <- ts(decomposition$figure, 
+                 start = start(x), 
+                 end = end(x), 
+                 frequency = frequency(x))
     
-    return(series)
+    seasonaly_adjusted_series <- x - figure
+    
+    return(list(series = seasonaly_adjusted_series, figure = decomposition$figure))
 }
 
+revert_forecast <- function(x, figure, ln = TRUE, dif = TRUE) {
+    
+    s <- window(rcl[["MG"]], start = c(2012, 1), end = c(2013, 12))
+    
+    m <- Arima(s, order = c(1, 1, 0), lambda = 0)
+    
+    f <- forecast.Arima(m, h = 6)$mean
+    
+    
+    s2 <- window(rcl[["MG"]], start = c(2012, 1), end = c(2013, 12))
+    
+    s2 <- diff(log(s2), lag = 1)
+    
+    m2 <- Arima(s3, order = c(1, 0, 0))
+    
+    f2 <- forecast.Arima(m2, h = 6)$mean
+    
+    return(FALSE)
+}
 
 # rm()

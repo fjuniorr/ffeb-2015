@@ -4,7 +4,7 @@ library("tsDyn")
 
 forecast_rw <- function(x) {
 
-    rw_model <- rwf(x, h = 24, drift = TRUE)
+    rw_model <- rwf(x$series, h = 24, drift = TRUE)
     
     forecast <- rw_model$mean
     
@@ -14,7 +14,7 @@ forecast_rw <- function(x) {
 
 forecast_star <- function(x) {
     
-    star_model <- star(x)
+    star_model <- star(x$series)
     
     forecast <- predict(star_model, n.ahead = 24)
     
