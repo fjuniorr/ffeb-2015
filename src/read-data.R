@@ -22,15 +22,21 @@ rcl <- lapply(raw_data, clean)
 
 names(rcl) <- states
 
-rcl <- rcl[c("MG", "SP", "RJ", "RS")]
-
 
 #===========================================
 # checking for missing values
 
-missing <- do.call("cbind", rcl)
+check_missing <- function(x) {
+    any(is.na(x))
+}
+
+missing <- do.call("rbind", lapply(rcl, check_missing))
+
+missing <- cbind(states, missing)[missing == TRUE, 1]
+
+rcl <- rcl[setdiff(states, missing)]
 
 #===========================================
 # cleaning the enviroment
 
-rm(path, raw_data, clean)
+rm(path, raw_data, clean, check_missing)
