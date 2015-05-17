@@ -1,25 +1,18 @@
 
 
-seasonal_adjustment <- function(x, ln = TRUE, dif = TRUE) {
+adjust_series <- function(x) {
     
     series <- x
     
-    if(ln) series <- log(series)
-    
-    if(dif) series <- diff(series, lag = 1)
+    series <- diff(log(series), lag = 1)
     
     decomposition <- decompose(series, type = "additive")
     
-    figure <- ts(decomposition$figure, 
-                 start = start(x), 
-                 end = end(x), 
-                 frequency = frequency(x))
+    seasonaly_adjusted_series <- series - decomposition$seasonal
     
-    aux <- ts.intersect(series, figure)
-    
-    seasonaly_adjusted_series <- aux[, "series"] - aux[, "figure"]
-    
-    return(list(unadjusted_series = x, adjusted_series = seasonaly_adjusted_series, figure = decomposition$figure))
+    return(list(unadjusted_series = x, 
+                adjusted_series = seasonaly_adjusted_series, 
+                figure = decomposition$figure))
 }
 
 

@@ -5,16 +5,36 @@ source("./src/adjustments.R")
 source("./src/forecasts.R")
 
 
-adjusted_rcl <- lapply(rcl, seasonal_adjustment)
+# ==================================
+# log, diff and seasonal adjusment with additive moving averages applied to level series in this order
 
-decompose(diff(log(rcl[["ES"]]), lag = 1), type = "additive")$x - ts(decompose(diff(log(rcl[["ES"]]), lag = 1), type = "additive")$figure, start = c(2003, 2), end = c(2014, 12), frequency = 12)
-adjusted_rcl[["ES"]]$adjusted_series
+adjusted_rcl <- lapply(in_sample_rcl, adjust_series)
+
+# ==================================
+# naive forecasts of unadjusted series and calculation of accuracy measures
+
+# ==================================
+# random walk forecasts of adjusted series and calculation of accuracy measures
+
+rw_forecast <-  lapply(adjusted_rcl, forecast_rw)
+
+accuracy_rw <- lapply(setdiff(states, missing), 
+                      function(x) 
+                          accuracy(rw_forecast[[x]], out_sample_rcl[[x]]))
+
+names(accuracy_rw) <- setdiff(states, missing)
 
 
-decompose(diff(log(rcl[["ES"]]), lag = 1), type = "additive")$figure
-adjusted_rcl[["ES"]]$figure
+# ==================================
+# star forecasts of adjusted series and calculation of accuracy measures
 
+star_forecast <- lapply(adjusted_rcl, forecast_star)
 
-rw_rcl <-  lapply(adjusted_rcl, forecast_rw)
+accuracy_star <- lapply(setdiff(states, missing), 
+                      function(x) 
+                          accuracy(star_forecast[[x]], out_sample_rcl[[x]]))
 
-star_rcl <- lapply(adjusted_rcl, forecast_star)
+names(accuracy_star) <- setdiff(states, missing)
+
+# ==================================
+# exporting the results to an excel file
