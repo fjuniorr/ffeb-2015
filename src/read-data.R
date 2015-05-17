@@ -1,13 +1,14 @@
 library("readxl")
 
 path <- "./data-raw/RCL_CAMBIO_IPV_IBC_IGPDI_BRASIL Patricia_Luciano.xlsx"
+
 states <- excel_sheets(path)
 
 raw_data <- lapply(states, 
                    FUN = read_excel, 
                    path = path, 
                    col_names = FALSE, 
-                   skip = 1) # read all excel sheets and stores it in a list
+                   skip = 1) 
 
 
 clean <- function(x) {
@@ -15,7 +16,7 @@ clean <- function(x) {
     names(x) <- c("rcl")
     x <- ts(x, start = c(2003, 1), end = c(2014, 12), frequency = 12)
     return(x)
-} # function to clean each position in the list and create a ts object
+} 
 
 
 rcl <- lapply(raw_data, clean)
