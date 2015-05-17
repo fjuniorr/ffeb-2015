@@ -1,0 +1,31 @@
+---
+title: "results"
+author: "Francisco Alves"
+date: "May 17, 2015"
+output: pdf_document
+---
+```{r}
+
+```
+
+
+
+```{r, echo=FALSE}
+plot_state <- "RS"
+
+ts.plot(rcl[[plot_state]], 
+        rw_forecast[[plot_state]],
+        star_forecast[[plot_state]],
+          gpars = list(
+              col = c("black", "red", "green"),
+              lty = c(1, 2, 2)))
+
+legend("bottomright", # places a legend at the appropriate place
+       
+       c("RCL","RW", "STAR"), # puts text in the legend 
+       
+       lty=c(1, 2, 2), # gives the legend appropriate symbols (lines)
+       
+       lwd=c(2.5,2.5,2.5),col=c("black","red","green")) # gives the legend lines the correct color and width
+```
+

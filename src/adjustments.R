@@ -1,20 +1,17 @@
-
-
-adjust_series <- function(x) {
+adjust_series <- function(x, dif = TRUE) {
+     
+    series <- log(x)
     
-    series <- x
-    
-    series <- diff(log(series), lag = 1)
+    if(dif) {
+        series <- diff(series, lag = 1)
+    }
     
     decomposition <- decompose(series, type = "additive")
     
-    seasonaly_adjusted_series <- series - decomposition$seasonal
+    seas_adj <- series - decomposition$seasonal
     
-    return(list(unadjusted_series = x, 
-                adjusted_series = seasonaly_adjusted_series, 
-                figure = decomposition$figure))
+    return(list(original_ts = x, 
+                seas_adj_ts = seas_adj, 
+                figure = decomposition$figure,
+                is_dif = dif))
 }
-
-
-
-# rm()
