@@ -44,14 +44,3 @@ forecast_star <- function(x) {
     
     return(level_forecast)
 }
-
-# method1 <- c(as.numeric(window(original_series, 
-#                start = end(original_series), 
-#                end = end(original_series), frequency = 12)), as.numeric(exp(forecast)))
-# 
-# method2 <- c(as.numeric(log(window(original_series, 
-#                start = end(original_series), 
-#                end = end(original_series), frequency = 12))), as.numeric(forecast))
-# 
-# cbind(cumprod(method1)[-1], 
-#       exp(cumsum(method2))[-1])

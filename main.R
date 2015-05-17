@@ -38,3 +38,21 @@ names(accuracy_star) <- setdiff(states, missing)
 
 # ==================================
 # exporting the results to an excel file
+
+
+# ==================================
+# exploring the results
+
+plot_state = "PA"
+
+ts.plot(in_sample_rcl[[plot_state]], rw_forecast[[plot_state]], star_forecast[[plot_state]], gpars = list(col = c("black", "red", "green"), lty=c(1, 2, 2)))
+
+legend("bottomright", # places a legend at the appropriate place
+       
+       c("RCL","RW Forecast", "STAR Forecast"), # puts text in the legend 
+       
+       lty=c(1,2,2), # gives the legend appropriate symbols (lines)
+       
+       lwd=c(2.5,2.5,2.5),col=c("black","red", "green")) # gives the legend lines the correct color and width
+
+
