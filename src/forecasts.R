@@ -16,7 +16,7 @@ forecast_rw <- function(x) {
     
     level_forecast <- exp(seas_unadjusted_forecast)
     
-    return(level_forecast)
+    return(list(model = rw_model, forecast = level_forecast))
         
 }
 
@@ -38,5 +38,5 @@ forecast_star <- function(x) {
     
     level_forecast <- ts(level_forecast, start = start(seas_unadjusted_forecast), end = end(seas_unadjusted_forecast), frequency = 12)
     
-    return(level_forecast)
+    return(list(model = star_model, forecast = level_forecast))
 }

@@ -20,7 +20,7 @@ rw_forecast <-  lapply(seas_adj_ln_rcl, forecast_rw)
 accuracy_rw <- lapply(setdiff(states, missing), 
                       function(x) { 
                           
-                          stats <- accuracy(rw_forecast[[x]], out_sample_rcl[[x]])
+                          stats <- accuracy(rw_forecast[[x]]$forecast, out_sample_rcl[[x]])
                           rownames(stats) <- x
                           stats
                           
@@ -36,7 +36,7 @@ star_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_star)
 accuracy_star <- lapply(setdiff(states, missing), 
                       function(x) { 
                           
-                          stats <- accuracy(star_forecast[[x]], out_sample_rcl[[x]])
+                          stats <- accuracy(star_forecast[[x]]$forecast, out_sample_rcl[[x]])
                           rownames(stats) <- x
                           stats
                           
