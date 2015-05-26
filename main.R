@@ -29,6 +29,38 @@ accuracy_rw <- lapply(setdiff(states, missing),
 accuracy_rw <- do.call("rbind", accuracy_rw)
 
 # ==================================
+# ets forecasts of adjusted series and calculation of accuracy measures
+
+ets_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_ets)
+
+accuracy_ets <- lapply(setdiff(states, missing), 
+                        function(x) { 
+                            
+                            stats <- accuracy(ets_forecast[[x]]$forecast, out_sample_rcl[[x]])
+                            rownames(stats) <- x
+                            stats
+                            
+                        })
+
+accuracy_ets <- do.call("rbind", accuracy_ets)
+
+# ==================================
+# arima forecasts of adjusted series and calculation of accuracy measures
+
+arima_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_arima)
+
+accuracy_arima <- lapply(setdiff(states, missing), 
+                        function(x) { 
+                            
+                            stats <- accuracy(arima_forecast[[x]]$forecast, out_sample_rcl[[x]])
+                            rownames(stats) <- x
+                            stats
+                            
+                        })
+
+accuracy_arima <- do.call("rbind", accuracy_arima)
+
+# ==================================
 # star forecasts of adjusted series and calculation of accuracy measures
 
 star_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_star)
