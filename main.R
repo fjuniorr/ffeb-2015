@@ -1,3 +1,5 @@
+library("xlsx")
+
 source("./src/read-data.R")
 source("./src/adjustments.R")
 source("./src/forecasts.R")
@@ -26,7 +28,10 @@ accuracy_rw <- lapply(setdiff(states, missing),
                           
                           })
 
-accuracy_rw <- do.call("rbind", accuracy_rw)
+accuracy_rw <- data.frame(do.call("rbind", accuracy_rw))
+accuracy_rw[, "model"] <- "rw"
+accuracy_rw[, "estado"] <- row.names(accuracy_rw)
+row.names(accuracy_rw) <- NULL
 
 # ==================================
 # ets forecasts of adjusted series and calculation of accuracy measures
@@ -42,7 +47,11 @@ accuracy_ets <- lapply(setdiff(states, missing),
                             
                         })
 
-accuracy_ets <- do.call("rbind", accuracy_ets)
+accuracy_ets <- data.frame(do.call("rbind", accuracy_ets))
+accuracy_ets[, "model"] <- "ets"
+accuracy_ets[, "estado"] <- row.names(accuracy_ets)
+row.names(accuracy_ets) <- NULL
+
 
 # ==================================
 # arima forecasts of adjusted series and calculation of accuracy measures
@@ -58,7 +67,11 @@ accuracy_arima <- lapply(setdiff(states, missing),
                             
                         })
 
-accuracy_arima <- do.call("rbind", accuracy_arima)
+accuracy_arima <- data.frame(do.call("rbind", accuracy_arima))
+accuracy_arima[, "model"] <- "arima"
+accuracy_arima[, "estado"] <- row.names(accuracy_arima)
+row.names(accuracy_arima) <- NULL
+
 
 # ==================================
 # star forecasts of adjusted series and calculation of accuracy measures
@@ -74,4 +87,16 @@ accuracy_star <- lapply(setdiff(states, missing),
                           
                           })
 
-accuracy_star <- do.call("rbind", accuracy_star)
+accuracy_star <- data.frame(do.call("rbind", accuracy_star))
+accuracy_star[, "model"] <- "star"
+accuracy_star[, "estado"] <- row.names(accuracy_star)
+row.names(accuracy_star) <- NULL
+
+
+# ==================================
+# salva as medidas de acuracia em um arquivo CSV
+
+accuracy <- rbind(accuracy_rw, accuracy_ets, accuracy_arima, accuracy_star)
+
+write.xlsx(accuracy, file = "./data/accuracy.xls", row.names = FALSE)
+
