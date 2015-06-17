@@ -1,10 +1,18 @@
 TODO
 ===
 
-- [ ] inserir um parâmetro nas funções de previsão para possibilitar a escolha do número de passos a frente da previsão.
+- [ ] truncar amostra em abr/2013 e fazer previsoes ate dez/2014
 
-- [ ] fazer previsão 12 passos a frente com amostra de validação (2014) e para 2015 utilizando todo o período (2003 a 2014) para ajuste do modelo
+- [ ] definir tratamento para dados NA
 
-- [ ] definir o tratamento que será dado aos estados que possuem dados faltantes para a RCL
+- [ ] definir calculo das medidas de acuracia
 
-- [ ] definir um método de previsão ingênuo
+- [ ] implementar modelo NAIVE
+
+- [ ] design do app para estados no shiny
+
+- [ ] analise dos resultados
+
+- [ ] implementar modelo ARFIMA
+
+- [ ] implementar modelo STAR (variavel de transicao e numero de defasagens)
