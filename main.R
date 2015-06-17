@@ -1,9 +1,9 @@
 library("xlsx")
 
-source("./src/read-data.R")
-source("./src/adjustments.R")
-source("./src/forecasts.R")
-source("./src/forecast-plot.R")
+source("./R/read-data.R")
+source("./R/adjustments.R")
+source("./R/forecasts.R")
+source("./R/forecast-plot.R")
 
 
 # ==================================
