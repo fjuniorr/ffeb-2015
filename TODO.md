@@ -13,6 +13,8 @@ TODO
 
 - [ ] analise dos resultados
 
+- [ ] definir formato do apendice para analise individual dos estados
+
 - [ ] implementar modelo ARFIMA
 
 - [ ] implementar modelo STAR (variavel de transicao e numero de defasagens)
