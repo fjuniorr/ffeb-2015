@@ -140,16 +140,161 @@ star(seas_adj_dif_ln_rcl[["AC" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.181763
 accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["AC" ]], star_AC), out_sample_rcl[["AC"]]) 
 # =======================================================
 
+# =======================================================
+# MS
+star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.7706064
+star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.8268509
+star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.4831219
+star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.02293971
+star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.0652629
+star_MS <- star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.002312457
 
-star(seas_adj_dif_ln_rcl[["MS" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts) # erro
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts)
-star(seas_adj_dif_ln_rcl[["AL"]]$seas_adj_ts)
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["MS" ]], star_MS), out_sample_rcl[["MS"]]) 
+# =======================================================
+
+# =======================================================
+# MT
+star_MT <- star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.015059
+star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.2372174
+star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.3785857
+star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.494127
+star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.9335255
+star(seas_adj_dif_ln_rcl[["MT" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.5739755
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["MT" ]], star_MT), out_sample_rcl[["MT"]]) 
+# =======================================================
+
+
+# =======================================================
+# DF
+star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.3498943
+star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.00146011
+star_DF <- star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 3, thDelay = 0) # 2.349909e-06
+star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.09772762
+star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.01725688
+star(seas_adj_dif_ln_rcl[["DF" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.02832034
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["DF" ]], star_DF), out_sample_rcl[["DF"]]) 
+# =======================================================
+
+
+# =======================================================
+# BA - outlier em abr/2013 devido a concentracao de transferecias a municipios nesse mes
+star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.2536828
+star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.2343106
+star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.3668612
+star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.8828778
+star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.3670299
+star_BA <- star(seas_adj_dif_ln_rcl[["BA" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.231291
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["BA" ]], star_BA), out_sample_rcl[["BA"]]) 
+# =======================================================
+
+
+# =======================================================
+# RO
+star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.009719068
+star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.1196687
+star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.6049128
+star_RO <- star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.07292827
+star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.5665151
+star(seas_adj_dif_ln_rcl[["RO" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.2168866
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["RO" ]], star_RO), out_sample_rcl[["RO"]]) 
+# =======================================================
+
+# =======================================================
+# TO
+star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.6785387
+star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.5814937
+star_TO <- star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.4245053
+star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.4979961
+star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.7352554
+star(seas_adj_dif_ln_rcl[["TO" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.9034525
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["TO" ]], star_TO), out_sample_rcl[["TO"]]) 
+# =======================================================
+
+# =======================================================
+# CE
+star_CE <- star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.2764939
+star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.5633205
+star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.6958805
+star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.3174391
+star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.6830069
+star(seas_adj_dif_ln_rcl[["CE" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.883374
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["CE" ]], star_CE), out_sample_rcl[["CE"]]) 
+# =======================================================
+
+# =======================================================
+# PE
+star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.07112481
+star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.1661115
+star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.1756389 erro
+star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.4939349
+star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.5870119
+star_PE <- star(seas_adj_dif_ln_rcl[["PE" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.0298946
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["PE" ]], star_PE), out_sample_rcl[["PE"]]) 
+# =======================================================
+
+# =======================================================
+# SE
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.6785387
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.5814937
+star_SE <- star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.4245053
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.4979961
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.7352554
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.9034525
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["SE" ]], star_SE), out_sample_rcl[["SE"]]) 
+# =======================================================
+
+# =======================================================
+# MA
+star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.3961114
+star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.3039157
+star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.5201715
+star_MA <- star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.2029058
+star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.4011141
+star(seas_adj_dif_ln_rcl[["MA" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.2296948
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["MA" ]], star_MA), out_sample_rcl[["MA"]]) 
+# =======================================================
+
+# =======================================================
+# RN
+star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.761008
+star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.8825861
+star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.2936456
+star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.5195087
+star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.5891148
+star_RN <- star(seas_adj_dif_ln_rcl[["RN" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.01900131
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["RN" ]], star_RN), out_sample_rcl[["RN"]]) 
+# =======================================================
+
+# =======================================================
+# AL
+star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 1, thDelay = 0) # 1.56952e-06
+star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 2, thDelay = 0) # 3.171983e-05
+star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.01996122
+star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 2, thDelay = 1) # 1.507197e-06
+star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 3, thDelay = 1) # 2.692721e-05
+star_AL <- star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 3, thDelay = 2) # 2.718117e-09
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["AL" ]], star_AL), out_sample_rcl[["AL"]]) 
+# =======================================================

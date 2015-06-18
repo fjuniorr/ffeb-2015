@@ -23,6 +23,13 @@ rcl <- lapply(raw_data, clean)
 
 names(rcl) <- states
 
+#===========================================
+# ajuste de outliers
+
+ajuste_rcl_BA <- c(-384412186, -324328233, 	-319768455, 1028508874)
+
+window(rcl[["BA"]], start = c(2013, 1), end = c(2013, 4), frequency = 12) <- 
+    window(rcl[["BA"]], start = c(2013, 1), end = c(2013, 4), frequency = 12) + ajuste_rcl_BA
 
 #===========================================
 # checking for missing values
@@ -46,4 +53,4 @@ out_sample_rcl <- lapply(rcl, window, start = c(2013, 5), end = c(2014, 12), fre
 #===========================================
 # cleaning the enviroment
 
-rm(path, raw_data, clean, check_missing)
+rm(path, raw_data, clean, check_missing, ajuste_rcl_BA)
