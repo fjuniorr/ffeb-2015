@@ -39,9 +39,9 @@ names(missing) <- NULL
 
 rcl <- rcl[setdiff(states, missing)]
 
-in_sample_rcl <- lapply(rcl, window, start = c(2003, 1), end = c(2012, 12), frequency = 12)
+in_sample_rcl <- lapply(rcl, window, start = c(2003, 1), end = c(2013, 4), frequency = 12)
     
-out_sample_rcl <- lapply(rcl, window, start = c(2013, 1), end = c(2014, 12), frequency = 12)     
+out_sample_rcl <- lapply(rcl, window, start = c(2013, 5), end = c(2014, 12), frequency = 12)     
 
 #===========================================
 # cleaning the enviroment
