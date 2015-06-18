@@ -298,3 +298,57 @@ star_AL <- star(seas_adj_dif_ln_rcl[["AL" ]]$seas_adj_ts, m = 3, thDelay = 2) # 
 
 accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["AL" ]], star_AL), out_sample_rcl[["AL"]]) 
 # =======================================================
+
+
+# =======================================================
+# AP
+star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.5396975
+star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.9722525
+star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.9093331
+star_AP <- star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.07224372
+star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.3086373
+star(seas_adj_dif_ln_rcl[["AP" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.1810721
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["AP" ]], star_AP), out_sample_rcl[["AP"]]) 
+# =======================================================
+
+
+# =======================================================
+# RR - estorno de receita patrimonial em julho/2013 e leve incremento em agosto/2013
+star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.2373153 erro
+star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.3230909
+star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.4952744
+star_RR <- star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.08789952
+star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.2417556
+star(seas_adj_dif_ln_rcl[["RR" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.5553238
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["RR" ]], star_RR), out_sample_rcl[["RR"]]) 
+# =======================================================
+
+# =======================================================
+# PI
+star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.1139425
+star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.6045927
+star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.5205826
+star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.7027872
+star_PI <- star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.25401
+star(seas_adj_dif_ln_rcl[["PI" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.9784113
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["PI" ]], star_PI), out_sample_rcl[["PI"]]) 
+# =======================================================
+
+# =======================================================
+# PB
+star_PB <- star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.001290519
+star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.09228932
+star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.3386051
+star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.1195073
+star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.1352686
+star(seas_adj_dif_ln_rcl[["PB" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.06560986
+
+
+accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["PB" ]], star_PB), out_sample_rcl[["PB"]]) 
+# =======================================================
