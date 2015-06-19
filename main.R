@@ -17,7 +17,7 @@ seas_adj_dif_ln_rcl <- lapply(in_sample_rcl, adjust_series, dif = TRUE)
 
 rw_forecast <-  lapply(seas_adj_ln_rcl, forecast_rw)
 
-accuracy_rw <- lapply(setdiff(states, missing), 
+accuracy_rw <- lapply(states, 
                       function(x) { 
                           
                           stats <- accuracy(rw_forecast[[x]]$forecast, out_sample_rcl[[x]])
@@ -36,7 +36,7 @@ row.names(accuracy_rw) <- NULL
 
 ets_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_ets)
 
-accuracy_ets <- lapply(setdiff(states, missing), 
+accuracy_ets <- lapply(states, 
                         function(x) { 
                             
                             stats <- accuracy(ets_forecast[[x]]$forecast, out_sample_rcl[[x]])
@@ -56,7 +56,7 @@ row.names(accuracy_ets) <- NULL
 
 arima_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_arima)
 
-accuracy_arima <- lapply(setdiff(states, missing), 
+accuracy_arima <- lapply(states, 
                         function(x) { 
                             
                             stats <- accuracy(arima_forecast[[x]]$forecast, out_sample_rcl[[x]])
@@ -76,7 +76,7 @@ row.names(accuracy_arima) <- NULL
 
 star_forecast <- lapply(seas_adj_dif_ln_rcl, forecast_star)
 
-accuracy_star <- lapply(setdiff(states, missing), 
+accuracy_star <- lapply(states, 
                       function(x) { 
                           
                           stats <- accuracy(star_forecast[[x]]$forecast, out_sample_rcl[[x]])
