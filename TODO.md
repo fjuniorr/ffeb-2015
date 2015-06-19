@@ -1,9 +1,9 @@
 TODO
 ===
 
-- [ ] truncar amostra em abr/2013 e fazer previsoes ate dez/2014
+- [x] truncar amostra em abr/2013 e fazer previsoes ate dez/2014
 
-- [ ] definir tratamento para dados NA
+- [x] definir tratamento para dados NA
 
 - [ ] definir calculo das medidas de acuracia
 
@@ -17,4 +17,4 @@ TODO
 
 - [ ] implementar modelo ARFIMA
 
-- [ ] implementar modelo STAR (variavel de transicao e numero de defasagens)
+- [x] implementar modelo STAR (variavel de transicao e numero de defasagens)
