@@ -18,3 +18,5 @@ TODO
 - [ ] implementar modelo ARFIMA
 
 - [x] implementar modelo STAR (variavel de transicao e numero de defasagens)
+
+- [ ] disponibilizar codigo alterado do tsDyn
