@@ -4,7 +4,7 @@ library("tsDyn")
 
 forecast_rw <- function(x) {
 
-    rw_model <- rwf(x$seas_adj_ts, h = 24, drift = TRUE)
+    rw_model <- rwf(x$seas_adj_ts, h = 20, drift = TRUE)
     
     forecast <- rw_model$mean
     
@@ -24,7 +24,7 @@ forecast_ets <- function(x) {
     
     ets_model <- ets(x$seas_adj_ts)
     
-    forecast <- forecast(ets_model, h = 24)$mean
+    forecast <- forecast(ets_model, h = 20)$mean
     
     index <- ts(x$figure, start = start(x$seas_adj_ts), end = end(forecast), frequency = 12)
     
@@ -45,7 +45,7 @@ forecast_arima <- function(x) {
     
     arima_model <- auto.arima(x$seas_adj_ts)
     
-    forecast <- forecast(arima_model, h = 24)$mean
+    forecast <- forecast(arima_model, h = 20)$mean
     
     index <- ts(x$figure, start = start(x$seas_adj_ts), end = end(forecast), frequency = 12)
     
@@ -67,7 +67,7 @@ forecast_star <- function(x) {
 
     star_model <- star(x$seas_adj_ts)
     
-    forecast <- predict(star_model, n.ahead = 24)
+    forecast <- predict(star_model, n.ahead = 20)
     
     index <- ts(x$figure, start = start(x$seas_adj_ts), end = end(forecast), frequency = 12)
     
