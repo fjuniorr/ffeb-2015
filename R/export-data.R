@@ -1,5 +1,8 @@
 library("xlsx")
 
+# ==================================
+# salva a rcl executada em um arquivo xls
+
 lapply(states, function(x) {
     
     dt <- data.frame(rcl[[x]])
@@ -14,3 +17,11 @@ lapply(states, function(x) {
                row.names = FALSE,            
                append = TRUE)
 })
+
+
+# ==================================
+# salva as medidas de acuracia em um arquivo xls
+
+accuracy <- rbind(accuracy_rw, accuracy_ets, accuracy_arima, accuracy_star)
+
+write.xlsx(accuracy, file = "./data/accuracy.xls", row.names = FALSE)

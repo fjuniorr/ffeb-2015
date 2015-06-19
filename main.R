@@ -1,5 +1,3 @@
-library("xlsx")
-
 source("./R/read-data.R")
 source("./R/adjustments.R")
 source("./R/forecasts.R")
@@ -93,10 +91,4 @@ accuracy_star[, "estado"] <- row.names(accuracy_star)
 row.names(accuracy_star) <- NULL
 
 
-# ==================================
-# salva as medidas de acuracia em um arquivo CSV
-
-accuracy <- rbind(accuracy_rw, accuracy_ets, accuracy_arima, accuracy_star)
-
-write.xlsx(accuracy, file = "./data/accuracy.xls", row.names = FALSE)
 
