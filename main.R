@@ -1,5 +1,5 @@
 source("./R/read-data.R")
-source("./R/adjustments.R")
+source("./R/adjust_series.R")
 source("./R/forecasts.R")
 source("./R/forecast-plot.R")
 
@@ -7,10 +7,11 @@ source("./R/forecast-plot.R")
 # ==================================
 # transformations applied to original series
 
-seas_adj_ln_rcl <- lapply(in_sample_rcl, adjust_series, dif = FALSE)
+seas_adj_ln_rcl <- lapply(states, adjust_series, dif = FALSE)
+names(seas_adj_ln_rcl) <- states
 
-seas_adj_dif_ln_rcl <- lapply(in_sample_rcl, adjust_series, dif = TRUE)
-
+seas_adj_dif_ln_rcl <- lapply(states, adjust_series, dif = TRUE)
+names(seas_adj_dif_ln_rcl) <- states
 
 # ==================================
 # random walk forecasts of transformed series and calculation of accuracy measures
