@@ -15,3 +15,9 @@ adjust_series <- function(x, dif = TRUE) {
                 figure = decomposition$figure,
                 is_dif = dif))
 }
+
+seas_adj_ln_rcl <- lapply(states, adjust_series, dif = FALSE)
+names(seas_adj_ln_rcl) <- states
+
+seas_adj_dif_ln_rcl <- lapply(states, adjust_series, dif = TRUE)
+names(seas_adj_dif_ln_rcl) <- states
