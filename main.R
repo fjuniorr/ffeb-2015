@@ -1,18 +1,23 @@
-rm(list = ls())
+library("readxl")
+library("xlsx")
+library("reshape2")
+library("forecast")
+library("tsDyn")
+
 # leitura e limpeza dos dados originais da rcl
 source("./R/read-data.R")
 
 # aplicação de dessazonalização, transformação logaritma e dif na rcl
 source("./R/adjust_series.R")
 
-# passeio aleatório (rw) - previsão e medidas de acurácia 
+# previsão e medidas de acurácia
+#source("./R/naive.R")
 source("./R/rw.R")
-
-# suavizacao exponencial (ets) - previsão e medidas de acurácia 
 source("./R/ets.R")
-
-# arima  - previsão e medidas de acurácia
 source("./R/arima.R")
-
-# star - previsão e medidas de acurácia
 source("./R/star.R")
+
+
+# exportacao das bases com os resultados
+source("./R/export-data.R")
+

@@ -31,23 +31,24 @@ ets_forecast <- lapply(states, function(x) {
 
 names(ets_forecast) <- states
 ets_forecast <- data.frame(do.call("cbind", ets_forecast))
-ets_forecast[, "ano"] <- c(rep(2013, 8), rep(2014, 12))
-ets_forecast[, "mes"] <- c(5:12, 1:12)
-ets_forecast[, "modelo"] <- "ets"
-ets_forecast <- melt(ets_forecast, id.vars = c("modelo", "ano", "mes"), variable.name = "estado", value.name = "previsao")    
+ets_forecast[, "ANO"] <- c(rep(2013, 8), rep(2014, 12))
+ets_forecast[, "MES"] <- c(5:12, 1:12)
+ets_forecast[, "QUAD"] <- c(rep("2013-2", 4), rep("2013-3", 4), rep("2014-1", 4), rep("2014-2", 4), rep("2014-3", 4))
+ets_forecast[, "MODELO"] <- "ets"
+ets_forecast <- melt(ets_forecast, id.vars = c("MODELO", "ANO", "MES", "QUAD"), variable.name = "ESTADO", value.name = "PREVISTO")    
 
 
-accuracy_ets <- lapply(states, 
+ets_accuracy <- lapply(states, 
                         function(x) { 
                             
-                            stats <- accuracy(ets_forecast[ets_forecast$estado == x, "previsao"], 
+                            stats <- accuracy(ets_forecast[ets_forecast$ESTADO == x, "PREVISTO"], 
                                               out_sample_rcl[[x]])
                             rownames(stats) <- x
                             stats
                             
                         })
 
-accuracy_ets <- data.frame(do.call("rbind", accuracy_ets))
-accuracy_ets[, "modelo"] <- "ets"
-accuracy_ets[, "estado"] <- row.names(accuracy_ets)
-row.names(accuracy_ets) <- NULL
+ets_accuracy <- data.frame(do.call("rbind", ets_accuracy))
+ets_accuracy[, "MODELO"] <- "ets"
+ets_accuracy[, "ESTADO"] <- row.names(ets_accuracy)
+row.names(ets_accuracy) <- NULL

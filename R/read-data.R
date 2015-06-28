@@ -1,5 +1,3 @@
-library("readxl")
-
 path <- "./data-raw/RCL_CAMBIO_IPV_IBC_IGPDI_BRASIL Patricia_Luciano.xlsx"
 
 states <- excel_sheets(path)

@@ -1,5 +1,3 @@
-library("tsDyn")
-
 star_forecast <- lapply(states, function(x) {
 
     star_model <- switch(x, 
@@ -64,22 +62,23 @@ star_forecast <- lapply(states, function(x) {
 
 names(star_forecast) <- states
 star_forecast <- data.frame(do.call("cbind", star_forecast))
-star_forecast[, "ano"] <- c(rep(2013, 8), rep(2014, 12))
-star_forecast[, "mes"] <- c(5:12, 1:12)
-star_forecast[, "modelo"] <- "star"
-star_forecast <- melt(star_forecast, id.vars = c("modelo", "ano", "mes"), variable.name = "estado", value.name = "previsao")
+star_forecast[, "ANO"] <- c(rep(2013, 8), rep(2014, 12))
+star_forecast[, "MES"] <- c(5:12, 1:12)
+star_forecast[, "QUAD"] <- c(rep("2013-2", 4), rep("2013-3", 4), rep("2014-1", 4), rep("2014-2", 4), rep("2014-3", 4))
+star_forecast[, "MODELO"] <- "star"
+star_forecast <- melt(star_forecast, id.vars = c("MODELO", "ANO", "MES", "QUAD"), variable.name = "ESTADO", value.name = "PREVISTO")
 
-accuracy_star <- lapply(states, 
+star_accuracy <- lapply(states, 
                       function(x) { 
                           
-                          stats <- accuracy(star_forecast[star_forecast$estado == x, "previsao"], 
+                          stats <- accuracy(star_forecast[star_forecast$ESTADO == x, "PREVISTO"], 
                                             out_sample_rcl[[x]])
                           rownames(stats) <- x
                           stats
                           
                           })
 
-accuracy_star <- data.frame(do.call("rbind", accuracy_star))
-accuracy_star[, "modelo"] <- "star"
-accuracy_star[, "estado"] <- row.names(accuracy_star)
-row.names(accuracy_star) <- NULL
+star_accuracy <- data.frame(do.call("rbind", star_accuracy))
+star_accuracy[, "MODELO"] <- "star"
+star_accuracy[, "ESTADO"] <- row.names(star_accuracy)
+row.names(star_accuracy) <- NULL

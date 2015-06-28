@@ -1,7 +1,3 @@
-library("forecast")
-library("reshape2")
-
-# previsao
 rw_forecast <-  lapply(states,
                        function(x) {
 
@@ -25,17 +21,18 @@ rw_forecast <-  lapply(states,
 
 names(rw_forecast) <- states
 rw_forecast <- data.frame(do.call("cbind", rw_forecast))
-rw_forecast[, "ano"] <- c(rep(2013, 8), rep(2014, 12))
-rw_forecast[, "mes"] <- c(5:12, 1:12)
-rw_forecast[, "modelo"] <- "rw"
-rw_forecast <- melt(rw_forecast, id.vars = c("modelo", "ano", "mes"), variable.name = "estado", value.name = "previsao")    
+rw_forecast[, "ANO"] <- c(rep(2013, 8), rep(2014, 12))
+rw_forecast[, "MES"] <- c(5:12, 1:12)
+rw_forecast[, "QUAD"] <- c(rep("2013-2", 4), rep("2013-3", 4), rep("2014-1", 4), rep("2014-2", 4), rep("2014-3", 4))
+rw_forecast[, "MODELO"] <- "rw"
+rw_forecast <- melt(rw_forecast, id.vars = c("MODELO", "ANO", "MES", "QUAD"), variable.name = "ESTADO", value.name = "PREVISTO")
 
 
-# medidas de acuracia
+
 rw_accuracy <- lapply(states, 
                       function(x) { 
                           
-                          stats <- accuracy(rw_forecast[rw_forecast$estado == x, "previsao"], 
+                          stats <- accuracy(rw_forecast[rw_forecast$ESTADO == x, "PREVISTO"], 
                                             out_sample_rcl[[x]])
                           rownames(stats) <- x
                           stats
@@ -43,7 +40,7 @@ rw_accuracy <- lapply(states,
                       })
 
 rw_accuracy <- data.frame(do.call("rbind", rw_accuracy))
-rw_accuracy[, "modelo"] <- "rw"
-rw_accuracy[, "estado"] <- row.names(rw_accuracy)
+rw_accuracy[, "MODELO"] <- "rw"
+rw_accuracy[, "ESTADO"] <- row.names(rw_accuracy)
 row.names(rw_accuracy) <- NULL
 

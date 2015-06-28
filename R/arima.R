@@ -31,23 +31,24 @@ arima_forecast <- lapply(states, function(x) {
 
 names(arima_forecast) <- states
 arima_forecast <- data.frame(do.call("cbind", arima_forecast))
-arima_forecast[, "ano"] <- c(rep(2013, 8), rep(2014, 12))
-arima_forecast[, "mes"] <- c(5:12, 1:12)
-arima_forecast[, "modelo"] <- "arima"
-arima_forecast <- melt(arima_forecast, id.vars = c("modelo", "ano", "mes"), variable.name = "estado", value.name = "previsao")    
+arima_forecast[, "ANO"] <- c(rep(2013, 8), rep(2014, 12))
+arima_forecast[, "MES"] <- c(5:12, 1:12)
+arima_forecast[, "QUAD"] <- c(rep("2013-2", 4), rep("2013-3", 4), rep("2014-1", 4), rep("2014-2", 4), rep("2014-3", 4))
+arima_forecast[, "MODELO"] <- "arima"
+arima_forecast <- melt(arima_forecast, id.vars = c("MODELO", "ANO", "MES", "QUAD"), variable.name = "ESTADO", value.name = "PREVISTO")    
 
 
-accuracy_arima <- lapply(states, 
+arima_accuracy <- lapply(states, 
                         function(x) { 
                             
-                            stats <- accuracy(arima_forecast[arima_forecast$estado == x, "previsao"], 
+                            stats <- accuracy(arima_forecast[arima_forecast$ESTADO == x, "PREVISTO"], 
                                               out_sample_rcl[[x]])
                             rownames(stats) <- x
                             stats
                             
                         })
 
-accuracy_arima <- data.frame(do.call("rbind", accuracy_arima))
-accuracy_arima[, "modelo"] <- "arima"
-accuracy_arima[, "estado"] <- row.names(accuracy_arima)
-row.names(accuracy_arima) <- NULL
+arima_accuracy <- data.frame(do.call("rbind", arima_accuracy))
+arima_accuracy[, "MODELO"] <- "arima"
+arima_accuracy[, "ESTADO"] <- row.names(arima_accuracy)
+row.names(arima_accuracy) <- NULL
