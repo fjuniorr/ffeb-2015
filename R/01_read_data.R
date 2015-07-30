@@ -65,4 +65,4 @@ out_sample_rcl <- lapply(rcl, window, start = c(2013, 5), end = c(2014, 12), fre
 #===========================================
 # cleaning the enviroment
 
-rm(path, raw_data, clean, check_missing, ajuste_rcl_BA)
+rm(path, raw_data, clean, ajuste_rcl_BA)

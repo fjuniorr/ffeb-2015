@@ -1,6 +1,6 @@
 # ==================================
 # salva a rcl executada em um arquivo xls
-
+# somente precisa ser executado novamente caso haja alteracao nos dados brutos da rcl
 # lapply(states, function(x) {
 #     
 #     dt <- data.frame(rcl[[x]])
@@ -19,7 +19,7 @@
 # ==================================
 # salva as previsoes de acuracia em um arquivo xls
 
-dt_forecast <- rbind(rw_forecast, ets_forecast, arima_forecast, star_forecast)
+dt_forecast <- rbind(naive_forecast, rw_forecast, ets_forecast, arima_forecast, star_forecast)
 
 execucao <- data.frame(do.call("cbind", out_sample_rcl))
 execucao[, "ANO"] <- c(rep(2013, 8), rep(2014, 12))
@@ -37,6 +37,6 @@ write.xlsx(dt_forecast, file = "./data/forecast.xls", row.names = FALSE)
 # ==================================
 # salva as medidas de acuracia em um arquivo xls
 
-dt_accuracy <- rbind(rw_accuracy, ets_accuracy, arima_accuracy, star_accuracy)
+dt_accuracy <- rbind(naive_accuracy, rw_accuracy, ets_accuracy, arima_accuracy, star_accuracy)
 
 write.xlsx(dt_accuracy, file = "./data/accuracy.xls", row.names = FALSE)
