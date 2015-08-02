@@ -1,5 +1,5 @@
 # =======================================================
-# implementação STAR manual todos estados
+# implementação STAR manual para todos estados
 
 # =======================================================
 # ES
