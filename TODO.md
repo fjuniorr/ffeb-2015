@@ -7,7 +7,7 @@ TODO
 
 - [ ] definir calculo das medidas de acuracia
 
-- [ ] implementar modelo NAIVE
+- [x] implementar modelo NAIVE
 
 - [ ] design do app para estados no shiny
 
@@ -15,8 +15,8 @@ TODO
 
 - [ ] definir formato do apendice para analise individual dos estados
 
-- [ ] implementar modelo ARFIMA
+- [ ] ~~implementar modelo ARFIMA~~
 
 - [x] implementar modelo STAR (variavel de transicao e numero de defasagens)
 
-- [ ] disponibilizar codigo alterado do tsDyn
+- [x] disponibilizar codigo alterado do tsDyn

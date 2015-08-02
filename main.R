@@ -21,3 +21,6 @@ source("./R/03_05_star.R")
 # exportacao das bases com os resultados
 source("./R/04_export_data.R")
 
+# para exploracao dos resultados
+source("./R/05_results.R")
+forecast_plot("MG")
