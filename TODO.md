@@ -5,7 +5,7 @@ TODO
 
 - [x] definir tratamento para dados NA
 
-- [ ] definir calculo das medidas de acuracia
+- [ ] definir calculo das medidas de acuracia (agregar para os ultimos 12 meses em cada quadrimestre, gerando 3 quadrimestres de estatisticas (abr/2014, ago/2014, dez/2014))
 
 - [x] implementar modelo NAIVE
 
@@ -14,6 +14,14 @@ TODO
 - [ ] analise dos resultados
 
 - [ ] definir formato do apendice para analise individual dos estados
+
+- [ ] refatorar código para utilização de makefile
+
+- [ ] consolidar dados brutos das séries originais
+
+- [ ] incorporar código dos modelos multivariados
+
+- [ ] criar organização no github para distribuição dos trabalhos realizados pelo núcleo
 
 - [ ] ~~implementar modelo ARFIMA~~
 
