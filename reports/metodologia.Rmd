@@ -1,0 +1,30 @@
+---
+title: "Metodologia"
+output: word_document
+bibliography: ref.bib
+---
+
+# Base de dados
+
+As informações da arrecadação da Receita Corrente Líquida (RCL) são aquelas constantes do demonstrativo da RCL que faz parte do Relatório Resumido da Execução Orçamentária (RREO) de cada Estado. Em sua grande maioria os RREO's foram obtidos do Portal da Transparência do ente da Federação ou do Portal SISTN da Caixa Econômica Federal. 
+
+Foram realizados ajustes referentes ao mês de contabilização das Transferências Constitucionais e Legais para o estado da Bahia nos meses de jan/2013 a abr/2013. Esse ajuste alterou o valor da RCL e foi necessário tendo em vista que a Bahia não contabilizou esses valores no período de janeiro a março e realizou uma contabilização retroativa em abril. O ajuste foi realizado com base na proporção de arrecadação das receitas de ICMS, IPVA e IPI-Exp em cada mês.
+
+Também foi realizado ajuste na receita patrimonial do estado de Roraima para os meses de jul/2013 e ago/2013. Foi registrado um estorno de receita em julho e uma arrecadação acima do padrão em agosto. O ajuste foi realizado de forma que o estorno de julho fosse totalmente registrado em agosto, alterando o valor da RCL.
+
+<!--- A alteração de Roraima (RR) ainda não foi realizada no código. Necessário discutir com o restante do grupo -->
+
+# Métodos de Previsão
+
+As previsões univariadas foram realizadas por meio de 5 métodos e modelos distintos, quais sejam: método ingênuo; passeio aleatório, suavização exponencial, modelo autoregressivo e de médias móveis integrado (ARIMA) e modelo autoregressivo de transição suave (STAR). O método ingênuo utilizou a série em nível e sem dessazonalização, o passeio aleatório foi aplicado na série com transformação logaritma e dessazonalização por médias móveis aditivas, e os demais modelos foram aplicados na série com transformação logaritma, primeira diferença e dessazonalização por médias móveis aditivas. Segue breve descrição das particularidades dos métodos empregados.
+
+O método ingênuo de previsão é uma denominação genérica utilizada para se referir a métodos de previsão extremamente simples que possam ser utilizados como benchmarking para métodos e modelos mais complexos. [@makridakis1998]. A racionalidade por trás desse tipo de comparação é medir quão melhor a previsão de um modelo complexo é em relação a previsão mais simples que poderia ser obtida pelos atores interessados. Ou seja, é possível responder a pergunta se os recursos investidos na elaboração da previsão mais complexa geraram os resultados desejados. As previsões para o modelo ingênuo foram realizadas com a série em nível e sem dessazonalização. Neste trabalho, a previsão ingênua para o período $Y_t$ pode ser representada por
+
+$$ Y_t = Y_{t-1} + (Y_{t-12} - Y_{t-13}) $$
+
+As escolhas dos parâmetros dos modelos de suavização exponencial e dos modelo ARIMA foram realizados de forma automática pelos pacote *forecast* do software R. A descrição dos algoritmos utilizados pelo mencionado pacote podem ser encontradas em @hyndman2008b. Por fim, para estimação dos modelos STAR foi utilizado[^1] o pacote *tsDyn*. Foram testadas especificações alternativas para os parâmetros embedding dimension (m) e 'time delay' da threshold variable (thDelay) (m = 1 e thDelay = 0; m = 2 e thDelay = 0; m = 3 e thDelay = 0; m = 2 e thDelay = 1; m = 3 e thDelay = 1; m = 3 e thDelay = 2) e escolhidos os modelos que obtiveram o menor *p-valor*  no teste de linearidade.
+
+[^1]: O pacote *tsDyn* foi alterado para que a estimação do modelo STAR fosse realizada mesmo no caso em que a série fosse considerada linear.
+
+# Referências
+

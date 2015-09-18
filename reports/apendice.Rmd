@@ -1,0 +1,13 @@
+---
+title: "Relatório"
+author: "Francisco Alves"
+date: "June 17, 2015"
+output: html_document
+params:
+    state: "SP"
+---
+
+```{r}
+params$state
+```
+

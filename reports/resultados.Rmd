@@ -1,0 +1,53 @@
+---
+title: "Resultados"
+output: 
+    pdf_document:
+        fig_caption: true
+---
+```{r, echo = FALSE, results='hide'}
+library(ggplot2)
+library(data.table)
+library(readxl)
+dt_forecast <- read_excel("../data/forecast.xls")
+dt <- data.table(dt_forecast)
+dt[, MAPE := abs((EXECUTADO - PREVISTO) / EXECUTADO)]
+dt <- dt[!(ESTADO == "RR" & MES == 7 & ANO == 2013), ]
+```
+
+O objetivo desta seção é apresentar a performance dos diversos modelos estimados por meio de medidas de acurácia, especialmente o mean absolute percentage error (MAPE).
+
+A figura 1 apresenta a dispersão dos MAPEs para cada modelo. É possível notar que os modelos ARIMA, ETS e STAR tiveram o melhor desempenho com as medianas dos MAPE de respectivamente 7,54%, 7,66% e 8,19%. Em relação a variabilidade da performance medida pela distância interquartilica, os melhores modelos foram o ETS, ARIMA e STAR, com IQR respectivamente de 8,39%, 10,05% e 11,05%.
+
+```{r, echo=FALSE, fig.cap="MAPE das Previsões versus Modelos"}
+ggplot(dt, aes(x = MODELO, y = MAPE)) + geom_boxplot()
+```
+
+Além da performance em relação aos modelos, também é interessante a análise se algum estado possui uma série da RCL com maior previsibilidade. O gráfico abaixo mostra que os estados de Santa Catarina (mediana do MAPE de `r dt[ESTADO == "SC", median(MAPE)]`) e Paraná (mediana do MAPE de `r dt[ESTADO == "PR", median(MAPE)]`) possuem os melhores resultados. Eles são até `r dt[ESTADO == "AP", median(MAPE)] / dt[ESTADO == "SC", median(MAPE)]` mais previsiveis que AP. 
+
+```{r, echo=FALSE}
+df <- copy(dt)
+df$ESTADO <- as.ordered(df$ESTADO)
+df$ESTADO <- reorder(df$ESTADO, df$MAPE, median)
+ggplot(df, aes(x = ESTADO, y = MAPE)) + geom_boxplot()
+```
+
+
+
+ggplot(dt, aes(x = interaction(factor(MES), factor(ANO)), y = MAPE)) + geom_boxplot()
+
+ggplot(dt, aes(x = interaction(factor(MES), factor(ANO)), y = MAPE, color = MODELO)) + geom_point()
+
+ggplot(dt, aes(x = interaction(factor(MES), factor(ANO)), y = MAPE, color = MODELO)) + geom_jitter()
+
+ggplot(dt, aes(x = interaction(factor(MES), factor(ANO)), y = MAPE)) + geom_point()
+
+ggplot(dt, aes(x = interaction(factor(MES), factor(ANO)), y = MAPE)) + geom_jitter()
+
+ggplot(dt, aes(x = MAPE)) + geom_histogram() + facet_grid(MODELO ~ .)
+ggplot(dt, aes(x = ERRO)) + geom_histogram() + facet_grid(MODELO ~ .)
+
+ggplot(dt, aes(x = MAPE)) + geom_density() + facet_grid(MODELO ~ .)
+ggplot(dt, aes(x = ERRO)) + geom_density() + facet_grid(MODELO ~ .)
+
+
+
