@@ -249,12 +249,12 @@ accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["PE" ]], star_PE), out_sample_
 
 # =======================================================
 # SE
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.6785387
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.5814937
-star_SE <- star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.4245053
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.4979961
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.7352554
-star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.9034525
+star_SE <- star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 1, thDelay = 0) # 0.02368958
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 0) # 0.09889294
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 0) # 0.1173465
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 2, thDelay = 1) # 0.5589018
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 1) # 0.4736347
+star(seas_adj_dif_ln_rcl[["SE" ]]$seas_adj_ts, m = 3, thDelay = 2) # 0.8933149
 
 
 accuracy(forecast_star_state(seas_adj_dif_ln_rcl[["SE" ]], star_SE), out_sample_rcl[["SE"]]) 

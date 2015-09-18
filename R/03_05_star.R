@@ -21,7 +21,7 @@ star_forecast <- lapply(states, function(x) {
             TO = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 3, thDelay = 0), # 0.4245053
             CE = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 1, thDelay = 0), # 0.2764939
             PE = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 3, thDelay = 2), # 0.0298946
-            SE = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 3, thDelay = 0), # 0.4245053
+            SE = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 1, thDelay = 0), # 0.02368958
             MA = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 2, thDelay = 1), # 0.2029058
             RN = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 3, thDelay = 2), # 0.01900131
             AL = star(seas_adj_dif_ln_rcl[[x]]$seas_adj_ts, m = 3, thDelay = 2), # 2.718117e-09
